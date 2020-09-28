@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Tweet } from './tweet.model';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -14,9 +15,16 @@ export class TweetsService {
 
   getTweets() {
     this.http
-      .get<{ message: string; tweets: Tweet[] }>('http://localhost:3000/tweets')
-      .subscribe((tweetsData) => {
-        this.tweets = tweetsData.tweets;
+      .get<{ message: string; tweets: any }>('http://localhost:3000/tweets')
+      .pipe(
+        map((tweetData) => {
+          return tweetData.tweets.map((tweet) => {
+            return { id: tweet._id, message: tweet.message };
+          });
+        })
+      )
+      .subscribe((transformedTweets) => {
+        this.tweets = transformedTweets;
         this.tweetsUpdated.next([...this.tweets]);
       });
   }
