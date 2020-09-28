@@ -16,7 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private tweetsService: TweetsService) {}
 
   ngOnInit() {
-    this.tweets = this.tweetsService.getTweets();
+    this.tweetsService.getTweets();
     this.tweetsSub = this.tweetsService
       .getTweetUpdateListener()
       .subscribe((tweets: Tweet[]) => {
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   onSubmitTweet(form: NgForm) {
-    this.tweetsService.addTweet({ message: form.value.tweet });
+    this.tweetsService.addTweet(form.value.tweet);
     form.resetForm();
   }
 
