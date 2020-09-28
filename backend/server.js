@@ -12,16 +12,14 @@ mongoose.connect(
 );
 
 app.get("/tweets", (req, res) => {
-  const tweets = [
-    { id: "asdfh2323", message: "hi there" },
-    { id: "faslje372", message: "bye there" },
-  ];
-  res.status(200).json({ message: "Fetched tweets successfully.", tweets });
+  Tweet.find().then((tweets) => {
+    res.status(200).json({ message: "Fetched tweets successfully.", tweets });
+  });
 });
 
 app.post("/tweets", (req, res) => {
   const tweet = new Tweet({ message: req.body.message });
-  console.log(tweet);
+  tweet.save();
   res.status(201).json({ message: "Tweet added." });
 });
 
