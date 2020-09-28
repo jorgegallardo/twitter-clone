@@ -27,7 +27,12 @@ export class TweetsService {
 
   addTweet(message: string) {
     const tweet: Tweet = { id: null, message };
-    this.tweets.push(tweet);
-    this.tweetsUpdated.next([...this.tweets]);
+    this.http
+      .post<{ message: string }>('http://localhost:3000/tweets', tweet)
+      .subscribe((responseData) => {
+        console.log(responseData.message);
+        this.tweets.push(tweet);
+        this.tweetsUpdated.next([...this.tweets]);
+      });
   }
 }
