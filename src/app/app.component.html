@@ -32,7 +32,11 @@
     <div class="col-sm-12">
       <div class="card" *ngFor="let tweet of tweets">
         <div class="card-body">
-          <button type="button" class="btn btn-outline-danger float-right">
+          <button
+            type="button"
+            class="btn btn-outline-danger float-right"
+            (click)="onDeleteTweet(tweet.id)"
+          >
             X
           </button>
           <p class="card-text">

@@ -23,6 +23,13 @@ app.post("/tweets", (req, res) => {
   res.status(201).json({ message: "Tweet added." });
 });
 
+app.delete("/tweets/:id", (req, res) => {
+  Tweet.deleteOne({ _id: req.params.id }).then((result) => {
+    console.log(result);
+  });
+  res.status(200).json({ message: "Tweet deleted." });
+});
+
 app.listen(3000, () => {
   console.log("Server listening on port 3000.");
 });

@@ -29,6 +29,10 @@ export class AppComponent implements OnInit, OnDestroy {
     form.resetForm();
   }
 
+  onDeleteTweet(tweetId: string) {
+    this.tweetsService.deleteTweet(tweetId);
+  }
+
   ngOnDestroy() {
     this.tweetsSub.unsubscribe();
   }
