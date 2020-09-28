@@ -19,15 +19,16 @@ app.get("/tweets", (req, res) => {
 
 app.post("/tweets", (req, res) => {
   const tweet = new Tweet({ message: req.body.message });
-  tweet.save();
-  res.status(201).json({ message: "Tweet added." });
+  tweet.save().then((addedTweet) => {
+    res.status(201).json({ message: "Tweet added.", tweetId: addedTweet._id });
+  });
 });
 
 app.delete("/tweets/:id", (req, res) => {
   Tweet.deleteOne({ _id: req.params.id }).then((result) => {
     console.log(result);
+    res.status(200).json({ message: "Tweet deleted." });
   });
-  res.status(200).json({ message: "Tweet deleted." });
 });
 
 app.listen(3000, () => {
