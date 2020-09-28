@@ -1,7 +1,9 @@
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const app = express();
 
+app.use(bodyParser.json());
 app.use(cors());
 
 app.get("/tweets", (req, res) => {
@@ -10,6 +12,11 @@ app.get("/tweets", (req, res) => {
     { id: "faslje372", message: "bye there" },
   ];
   res.status(200).json({ message: "Fetched tweets successfully.", tweets });
+});
+
+app.post("/tweets", (req, res) => {
+  console.log(req.body);
+  res.status(201).json({ message: "Tweet added." });
 });
 
 app.listen(3000, () => {
