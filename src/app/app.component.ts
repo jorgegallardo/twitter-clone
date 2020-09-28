@@ -18,6 +18,6 @@ export class AppComponent implements OnInit {
   }
 
   onSubmitTweet(form: NgForm) {
-    this.tweets.push({ message: form.value.tweet });
+    this.tweetsService.addTweet({ message: form.value.tweet });
   }
 }
