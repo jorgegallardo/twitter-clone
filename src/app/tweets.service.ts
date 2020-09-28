@@ -48,7 +48,12 @@ export class TweetsService {
     this.http
       .delete(`http://localhost:3000/tweets/${tweetId}`)
       .subscribe(() => {
-        console.log('Deleted!');
+        console.log('Tweet deleted.');
+        const updatedTweets = this.tweets.filter((tweet) => {
+          return tweet.id !== tweetId;
+        });
+        this.tweets = updatedTweets;
+        this.tweetsUpdated.next([...this.tweets]);
       });
   }
 }
