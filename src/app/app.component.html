@@ -21,16 +21,13 @@
 
   <section class="row">
     <div class="col-sm-12">
-      <div class="card">
+      <div class="card" *ngFor="let tweet of tweets">
         <div class="card-body">
           <button type="button" class="btn btn-outline-danger float-right">
             X
           </button>
           <p class="card-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
-            iure magnam vel, quaerat, quia eius officia dignissimos explicabo
-            fuga incidunt sint nam voluptatum beatae eligendi illum quam,
-            assumenda quod voluptas!
+            {{ tweet.message }}
           </p>
           <a href="#" class="card-link float-left">Edit</a>
         </div>

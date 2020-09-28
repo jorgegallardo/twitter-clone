@@ -7,7 +7,9 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  tweets = [{ message: 'hi there' }, { message: 'bye there' }];
+
   onSubmitTweet(form: NgForm) {
-    alert(form.value.tweet);
+    this.tweets.push({ message: form.value.tweet });
   }
 }
