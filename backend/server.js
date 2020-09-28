@@ -2,9 +2,14 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
+const Tweet = require("./models/tweet");
+const mongoose = require("mongoose");
 
 app.use(bodyParser.json());
 app.use(cors());
+mongoose.connect(
+  "mongodb+srv://jorge:<password>@cluster0.lx13r.mongodb.net/<dbname>?retryWrites=true&w=majority"
+);
 
 app.get("/tweets", (req, res) => {
   const tweets = [
@@ -15,7 +20,8 @@ app.get("/tweets", (req, res) => {
 });
 
 app.post("/tweets", (req, res) => {
-  console.log(req.body);
+  const tweet = new Tweet({ message: req.body.message });
+  console.log(tweet);
   res.status(201).json({ message: "Tweet added." });
 });
 
