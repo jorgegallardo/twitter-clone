@@ -1,6 +1,14 @@
 <div class="container">
   <section class="row">
     <div class="col-sm-12">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Twitter Clone</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="col-sm-12">
       <form (submit)="onSubmitTweet(tweetForm)" #tweetForm="ngForm">
         <div class="form-group">
           <label for="tweetTextArea">Post A Tweet</label>
