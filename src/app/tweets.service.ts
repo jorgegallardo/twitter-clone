@@ -13,6 +13,10 @@ export class TweetsService {
     return [...this.tweets];
   }
 
+  getTweetUpdateListener() {
+    return this.tweetsUpdated.asObservable();
+  }
+
   addTweet(tweet: Tweet) {
     this.tweets.push(tweet);
     this.tweetsUpdated.next([...this.tweets]);
